@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringAWSApplication<spring-aws>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.spring.aws.spring_aws.SpringAWSApplication",
+            "projectName": "spring-aws",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

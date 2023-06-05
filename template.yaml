@@ -1,0 +1,50 @@
+#service: spring-aws
+#
+#frameworkVersion: '3'
+#
+#provider:
+#  name: aws
+#  runtime: java11
+#  stage: 'dev'
+#  region: 'ap-south-1'
+#  memorySize: 2048
+#  logRetentionInDays: 1
+#  timeout: 15
+#
+#package:
+#  artifact: target/spring-aws-0.0.1-SNAPSHOT.jar
+#
+#functions:
+#  api:
+#    handler: com.spring.aws.spring_aws.Handler::handleRequest
+#    events:
+#      - httpApi:
+#          method: any
+#          path: /{proxy+}
+
+                  
+          
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  SpringAwsApiFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: .
+      Handler: com.spring.aws.spring_aws.Handler::handleRequest
+      Runtime: java17
+      AutoPublishAlias: production
+      SnapStart:
+        ApplyOn: PublishedVersions
+      MemorySize: 2048
+      Events:
+        HelloWorld:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY

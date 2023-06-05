@@ -1,0 +1,10 @@
+.classpath
+.project
+.gradle/*
+.settings/org.eclipse.buildship.core.prefs
+bin/main/*
+build/class/java/main/com/.../*.class
+build/libs/snapshot.jar
+build/reports/test/test/*
+build/resources/main
+src/main/resources/application.properties

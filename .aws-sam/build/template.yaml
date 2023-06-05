@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Globals:
+  Function:
+    Timeout: 30
+Resources:
+  SpringAwsApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: SpringAwsApiFunction
+      Handler: com.spring.aws.spring_aws.Handler::handleRequest
+      Runtime: java17
+      AutoPublishAlias: production
+      SnapStart:
+        ApplyOn: PublishedVersions
+      MemorySize: 2048
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+    Metadata:
+      SamResourceId: SpringAwsApiFunction
